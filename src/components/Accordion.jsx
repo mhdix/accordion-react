@@ -1,4 +1,4 @@
-import { Children, useState } from "react";
+import { useState } from "react";
 import {ChevronUpIcon} from '@heroicons/react/24/outline'
 const data = [
   {
@@ -44,6 +44,8 @@ const Accordion = () => {
             <li>one</li>
             <li>2</li>
         </ul>
+        <h1>salammmmm Jojo chetori</h1>
+        <a href="#">clicable</a>
       </AccordionItem>
     </div>
   );
@@ -57,7 +59,7 @@ function AccordionItem({ title, id, open, setOpen, children }) {
   return (
     <div
       className={`accordion-item ${isOpen ? "accordion__expanded" : ""}`}
-      onClick={() => setOpen(id)}
+      onClick={() => setOpen(id == open ? null : id)}
     >
       <div className="accordion-item__header">
         <p>{title}</p>
