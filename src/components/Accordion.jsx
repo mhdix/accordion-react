@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Children, useState } from "react";
 import {ChevronUpIcon} from '@heroicons/react/24/outline'
 const data = [
   {
@@ -23,29 +23,55 @@ const Accordion = () => {
   return (
     <div className="accordion">
       {data.map((item) => (
-        <AccordionItem key={item.id} accordion={item} open={open} setOpen={setOpen}/>
+        <AccordionItem
+          id={item.id}
+          title={item.title}
+          key={item.id}
+          open={open}
+          setOpen={setOpen}
+        >
+          {item.text}
+        </AccordionItem>
       ))}
+      <AccordionItem
+        id={4}
+        title='sample accordion'
+        open={open}
+        setOpen={setOpen}
+      >
+        <p>salam sample accordion</p>
+        <ul>
+            <li>one</li>
+            <li>2</li>
+        </ul>
+      </AccordionItem>
     </div>
   );
 };
 
 export default Accordion;
 
-function AccordionItem({ accordion, open, setOpen }) {
-    const isOpen = accordion.id === open 
+function AccordionItem({ title, id, open, setOpen, children }) {
+    const isOpen = id === open 
     
   return (
     <div
       className={`accordion-item ${isOpen ? "accordion__expanded" : ""}`}
-      onClick={() => setOpen(accordion.id)}
+      onClick={() => setOpen(id)}
     >
       <div className="accordion-item__header">
-        <p>{accordion.title}</p>
+        <p>{title}</p>
         <span className="icon">
-          <ChevronUpIcon style={{ width: "2rem" , transition:' 0.2s linear all' , rotate : isOpen && '180deg' }} />
+          <ChevronUpIcon
+            style={{
+              width: "2rem",
+              transition: " 0.2s linear all",
+              rotate: isOpen && "180deg",
+            }}
+          />
         </span>
       </div>
-      <div className="accordion-item__content">{accordion.text}</div>
+      <div className="accordion-item__content">{children}</div>
     </div>
   );
 }
