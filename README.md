@@ -1,4 +1,4 @@
-#A simple, customizable accordion
+# A simple, customizable accordion
 
 component built with React.
 
